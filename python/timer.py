@@ -3,30 +3,54 @@ Alan Caldelas
 '''
 
 import time, subprocess 
-
-def start_timer_process():
+def start_timer_rest(completed):
+	"""
+	Starts a timer based on how many completetions have passed
+	"""
+	if completed == 5:
+		print("You have completed this round rest 25 mins")
+		completed = 0
+		rtime = 25
+	else:
+		print("You have completed this section {completed} /5")
+		rtime = 5
 	print("TIME HAS BEGUN")
-	count = 24
-	while(count != 25):
-		print(f"Min elapsed... {count} mins")
+	count = 0
+	while(count != time):
 		time.sleep(60)
 		count = count + 1
+		print(f"Min elapsed... {count} mins")
+
 	subprocess.run(["zenity","--width=250", "--height=250", "--warning", "--text='finished time'"])
 	
 	print("Time has completed")
-	retrieve_input()
+	
+	retrieve_input(completed)
+	
+def start_timer_read(completed):
+	#print(f"You have completed {completed} so far")
+	print("TIME HAS BEGUN")
+	count = 0
+	while(count != 25):
+		time.sleep(60)
+		count = count + 1
+		print(f"Min elapsed... {count} mins")
+	completed = completed + 1
+	subprocess.run(["zenity","--width=250", "--height=250", "--warning", "--text='finished time'"])
+	
+	print("Time has completed")
+	start_timer_rest(completed)
 
-def retrieve_input():
+def retrieve_input(completed):
 	user_input = input("Do you wish to begin program?\n>")
 	if (str(user_input) == "y"):
 		print("Beginning timer for 25 mins")
-		start_timer_process()
+		start_timer_read(completed)
 	else:
 		print("Ending program...")
 		exit()
 def main():
-	print("Program designed to time 25 mins for reading/work.")
-	retrieve_input()
+	retrieve_input(0)
 
 
 main()
