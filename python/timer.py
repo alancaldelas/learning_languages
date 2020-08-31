@@ -1,3 +1,7 @@
+'''
+Alan Caldelas
+'''
+
 import time, subprocess 
 
 def start_timer_process():
