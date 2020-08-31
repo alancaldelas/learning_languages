@@ -2,7 +2,8 @@
 Alan Caldelas
 '''
 
-import time, subprocess 
+import time, subprocess, webbrowser 
+
 def start_timer_rest(completed):
 	"""
 	Starts a timer based on how many completetions have passed
@@ -39,6 +40,7 @@ def start_timer_read(completed):
 	subprocess.run(["zenity","--width=250", "--height=250", "--warning", "--text='finished time'"])
 	
 	print("Time has completed")
+	webbrowser.open("https://www.youtube.com/watch?v=RQqJeIyyQBs")
 	start_timer_rest(completed)
 
 def retrieve_input(completed):
