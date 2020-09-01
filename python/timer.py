@@ -2,7 +2,9 @@
 Alan Caldelas
 '''
 
-import time, subprocess, webbrowser 
+import time, subprocess,random, webbrowser 
+
+urls = ['https://www.youtube.com/watch?v=F1B9Fk_SgI0', 'https://www.youtube.com/watch?v=RQqJeIyyQBs', "https://www.youtube.com/watch?v=Z-48u_uWMHY", 'https://www.youtube.com/watch?v=l3Cj7Esqr0c']
 
 def start_timer_rest(completed):
 	"""
@@ -15,21 +17,21 @@ def start_timer_rest(completed):
 	else:
 		print("You have completed this section {completed} /5")
 		rtime = 5
-	print("TIME HAS BEGUN")
+	print("REST TIME HAS BEGUN FOR rtime")
 	count = 0
-	while(count != time):
+	while(count != rtime):
 		time.sleep(60)
 		count = count + 1
 		print(f"Min elapsed... {count} mins")
 
 	subprocess.run(["zenity","--width=250", "--height=250", "--warning", "--text='finished time'"])
 	
-	print("Time has completed")
+	print("Rest time has completed")
 	
 	retrieve_input(completed)
 	
 def start_timer_read(completed):
-	#print(f"You have completed {completed} so far")
+	print(f"You have completed {completed} so far")
 	print("TIME HAS BEGUN")
 	count = 0
 	while(count != 25):
@@ -40,7 +42,7 @@ def start_timer_read(completed):
 	subprocess.run(["zenity","--width=250", "--height=250", "--warning", "--text='finished time'"])
 	
 	print("Time has completed")
-	webbrowser.open("https://www.youtube.com/watch?v=RQqJeIyyQBs")
+	webbrowser.open(random.choice(urls))
 	start_timer_rest(completed)
 
 def retrieve_input(completed):
